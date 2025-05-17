@@ -1,5 +1,4 @@
 # Quantitative Portfolio Construction using Backtested Trading Signals
-## by Joshua Foo Tse Ern
 
 ![Algorithm Trading](https://media.licdn.com/dms/image/v2/C4E12AQE_IuRbyuRDNA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1520237131460?e=1752710400&v=beta&t=_Kjps9mYIKHvw6WJQcfOxVJtyLVhGoxmkJpWdXRgj4I)
 ## 1. Purpose of Project
