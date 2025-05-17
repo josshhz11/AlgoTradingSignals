@@ -1,4 +1,4 @@
-# Portfolio Construction using Backtested Trading Signals (INCOMPLETE)
+# Quantitative Portfolio Construction using Backtested Trading Signals (INCOMPLETE)
 
 ![Algorithm Trading](https://media.licdn.com/dms/image/v2/C4E12AQE_IuRbyuRDNA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1520237131460?e=1752710400&v=beta&t=_Kjps9mYIKHvw6WJQcfOxVJtyLVhGoxmkJpWdXRgj4I)
 ## 1. Purpose of Project
@@ -78,7 +78,7 @@ Furthermore, we accessed the historical factor returns using the pandas-dataread
 We first explored a simple backtest of RSI on *fwd1m* returns, by taking the top 20% of stocks with highest RSI each month to construct our portfolio, simulating the returns for the next month using *fwd1m* returns, rebalancing the portfolio each time.
 
 With this strategy, we were able to achieve in the 5-year period:
-- Cumulative returns of **184%** vs 118% for holding SPY throughout
+- Cumulative returns of **184%** vs 119% for holding SPY throughout
 - CAGR of **24.6%** vs  17.9% for holding SPY throughout
 - Sharpe Ratio of **1.21** vs 1.00 for holding SPY throughout
 - Max Drawdown of **-0.12** vs -0.24 for holding SPY throughout
@@ -87,69 +87,23 @@ Here is the comparative returns of backtesting this strategy against holding SPY
 ![LO RSI Momentum Chart](img/LO-RSI-Momentum%20Trading%20Signal-Chart.jpg)
 
 #### 2.6.2. Cross-Sectional Multi-Factor Composite Rank
-TODO
-We first explored a simple backtest of RSI on *fwd1m* returns, by taking the top 20% of stocks with highest RSI each month to construct our portfolio, simulating the returns for the next month using *fwd1m* returns, rebalancing the portfolio each time.
+Next, we explored another trading signal which incorporated all of the features available, using a Cross-Sectional Multi-Factor Composite Signal computed by Rank-Sum of the features. 
 
 With this strategy, we were able to achieve in the 5-year period:
-- Cumulative returns of **184%** vs 118% for holding SPY throughout
-- CAGR of **24.6%** vs  17.9% for holding SPY throughout
-- Sharpe Ratio of **1.21** vs 1.00 for holding SPY throughout
-- Max Drawdown of **-0.12** vs -0.24 for holding SPY throughout
+- Cumulative returns of **84%** vs 119% for holding SPY throughout
+- CAGR of **13.7%** vs  17.9% for holding SPY throughout
+- Sharpe Ratio of **0.79** vs 1.00 for holding SPY throughout
+- Max Drawdown of **-0.19** vs -0.24 for holding SPY throughout
 
-## Underlying Assumptions for the Model
+Here is the comparative returns of backtesting this strategy against holding SPY throughout:
+![LO RSI Momentum Chart](img/Cross-Sectional-Multi-Factor-Composite-Rank-Chart.png)
 
-The Black-Scholes Model makes the following assumptions:
+#### 2.6.3. Rolling-IC-Weighted Composite Signal
+Lastly, we tested a signal that computes every technical/fundamental factor's 24-month information coefficient (IC) with next-month returns, scaling today's cross-sectional z-scores by those ICs, summing the results into an adaptive composite score, and trading the stocks with the top 20% of scores.
 
-1. No dividends are paid out during the life of the option.
-2. Markets are random because market movements can't be predicted.
-3. No transaction costs in buying the option.
-4. The risk-free rate and volatility of the underlying asset are known and constant.
-5. The returns of the underlying asset are normally distributed.
-6. The option is European and can only be exercised at expiration.
+With this strategy, we obtained the same exact portfolios constructed by the LO-RSI-Momentum strategy above, achieving the exact same cumulative returns, CAGR, and Sharpe over the 5-year period.
 
-## How does the Black-Scholes Equation work?
-The mathematics involved in the formula are complicated and not necessary for the average user to understand, but this program simply finds the value of an option (call/put) using the inputs provided above, and also derives the potential P&L for each option value with different inputs used. 
+Here is the comparative returns of backtesting this strategy against holding SPY throughout:
+![LO RSI Momentum Chart](img/Rolling-IC-Weighted-Composite-Signal-Chart.jpg)
 
-To find the value of the option would first require finding the current stock price multiplied by the cumulative standard normal distribution. Thereafter, we will take this value and minus the exercise price discounted back to the present value, multiplied by the cumulative standard normal distribution again.
-
-Now let's find *d1* and *d2* below: 
-
-### Calculating d1:
-
-$$
-d_1 = \frac{\ln\left(\frac{S}{K}\right) + \left(r + \frac{1}{2}\sigma^2\right)T}{\sigma\sqrt{T}}
-$$
-
-### Calculating d2:
-$$
-d_2 = \frac{\ln\left(\frac{S}{K}\right) + \left(r - \frac{1}{2}\sigma^2\right)T}{\sigma\sqrt{T}}
-$$
-
-or, the alternate way to calculate d2 is:
-
-$$
-d_2 = d_1 - \sigma\sqrt{T}
-$$
-
-### Calculating the Call Option Price
-The call option price C in the Black-Scholes-Merton model is calculated as:
-
-$$
-C = S \cdot N(d_1) - K \cdot e^{-rT} \cdot N(d_2)
-$$
-
-where S is the current stock price and K is the exercise price.
-
-### Calculating the Put Option Price
-The put option price P in the Black-Scholes-Merton model is calculated as:
-
-$$
-P = K \cdot e^{-rT} \cdot N(-d_2) - S \cdot N(-d_1)
-$$
-
-where S is the current stock price and K is the exercise price.
-
-## How is the P&L functionality calculated?
-To calculate the P&L of each option price (call/put), we take in an additional input of the purchase price of the option.
-
-To get the P&L, we take the value of each option minus the purchase price of the option, to get the profit or loss of each option and plot it on a heatmap, with negative values being in the red and positive values in the green. 
+## 3. Conclusion
