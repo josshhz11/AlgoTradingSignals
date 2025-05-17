@@ -1,6 +1,6 @@
 # Portfolio Construction using Backtested Trading Signals (INCOMPLETE)
 
-![image](https://www.ironfx.com/wp-content/uploads/2023/01/forex-algorithm-trade.jpg)
+![Forex Algorithm Trade](https://www.ironfx.com/wp-content/uploads/2023/01/forex-algorithm-trade.jpg)
 
 ## 1. Purpose of Project
 
@@ -85,7 +85,7 @@ With this strategy, we were able to achieve in the 5-year period:
 - Max Drawdown of **-0.12** vs -0.24 for holding SPY throughout
 
 Here is the comparative returns of backtesting this strategy against holding SPY throughout:
-![image]()
+![LO RSI Momentum Chart](img/LO-RSI-Momentum%20Trading%20Signal-Chart.jpg)
 
 #### 2.6.2. Cross-Sectional Multi-Factor Composite Rank
 TODO
