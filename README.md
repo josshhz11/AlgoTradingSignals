@@ -1,7 +1,6 @@
 # Portfolio Construction using Backtested Trading Signals (INCOMPLETE)
 
-![Forex Algorithm Trade](https://www.ironfx.com/wp-content/uploads/2023/01/forex-algorithm-trade.jpg)
-
+![Algorithm Trading](https://media.licdn.com/dms/image/v2/C4E12AQE_IuRbyuRDNA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1520237131460?e=1752710400&v=beta&t=_Kjps9mYIKHvw6WJQcfOxVJtyLVhGoxmkJpWdXRgj4I)
 ## 1. Purpose of Project
 
 This project seeks to construct portfolios using quantitative analysis/modelling techniques of technical indicators as features, rebalancing the portfolio of stocks every month.
