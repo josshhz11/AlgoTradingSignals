@@ -1,4 +1,4 @@
-# Quantitative Portfolio Construction using Backtested Trading Signals (INCOMPLETE)
+# Quantitative Portfolio Construction using Backtested Trading Signals
 
 ![Algorithm Trading](https://media.licdn.com/dms/image/v2/C4E12AQE_IuRbyuRDNA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1520237131460?e=1752710400&v=beta&t=_Kjps9mYIKHvw6WJQcfOxVJtyLVhGoxmkJpWdXRgj4I)
 ## 1. Purpose of Project
@@ -40,14 +40,7 @@ We curated the following technical indicators for each stock as below, explainin
 - Garman-Klass volatility uses **open, high, low, and closing prices** to provide a more accurate estimate of a stock's volatility than typical methods that only consider closing prices. It captures **intraday price movements** and is often used to **assess the risk associated with a stock**, especially in relation to its potential for rapid price changes.
 
 It is calculated as follows:
-$$
-\text{Garman--Klass Volatility}
-=
-\frac{\bigl(\ln(\text{High}) - \ln(\text{Low})\bigr)^{2}}{2}
-\;-\;
-\bigl(2\ln 2 - 1\bigr)\,
-\bigl(\ln(\text{Adj\_Close}) - \ln(\text{Open})\bigr)^{2}
-$$
+![Garman-Klass-Volatility-Equation](img/Garman-Klass-Volatility-Equation.png)
 
 **RSI**
 - The Relative Strength Index (RSI) is a technical indicator that measures the **speed and magnitude of price changes on a stock**, providing insights into its momentum. It's often used to identify **potential overbought or oversold conditions**.
@@ -99,7 +92,7 @@ With this strategy, we were able to achieve in the 5-year period:
 - Max Drawdown of **-0.19** vs -0.24 for holding SPY throughout
 
 Here is the comparative returns of backtesting this strategy against holding SPY throughout:
-![LO RSI Momentum Chart](img/Cross-Sectional-Multi-Factor-Composite-Rank-Chart.png)
+![Cross-Sectional Multi-Factor Composite Rank Chart](img/Cross-Sectional-Multi-Factor-Composite-Rank-Chart.png)
 
 #### 2.6.3. Rolling-IC-Weighted Composite Signal
 Lastly, we tested a signal that computes every technical/fundamental factor's 24-month information coefficient (IC) with next-month returns, scaling today's cross-sectional z-scores by those ICs, summing the results into an adaptive composite score, and trading the stocks with the top 20% of scores.
@@ -107,7 +100,7 @@ Lastly, we tested a signal that computes every technical/fundamental factor's 24
 With this strategy, we obtained the same exact portfolios constructed by the LO-RSI-Momentum strategy above, achieving the exact same cumulative returns, CAGR, and Sharpe over the 5-year period.
 
 Here is the comparative returns of backtesting this strategy against holding SPY throughout:
-![LO RSI Momentum Chart](img/Rolling-IC-Weighted-Composite-Signal-Chart.jpg)
+![Rolling-IC-Weighted Composite Signal Chart](img/Rolling-IC-Weighted-Composite-Signal-Chart.jpg)
 
 ## 3. Conclusion
 A simple LO-RSI-Momentum performed the best among our 3 strategy backtests, with the Rolling-IC-Weighted Composite Signal producing the same exact portfolios as the RSI strategy. This was because RSI's 24-month IC with next month returns dwarfed the other factors' ICs, and hence the composite resulted in ~100% RSI, just like the former strategy. To fix this, we would need to further floor or cap weights or use equal weights with rank-sum like we had done, in order to diversify.
@@ -117,4 +110,4 @@ Overall, I believe that some further improvements that can be made are:
 2. Adding sector-neutral constraints to prevent unintended sector bets
 3. Account for trading costs (commissions, slippage)
 
-## 4. Nezt steps: 
+## 4. Next steps: 
