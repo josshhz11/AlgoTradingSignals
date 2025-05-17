@@ -1,0 +1,13 @@
+pandas
+numpy
+matplotlib
+statsmodels
+pandas_datareader
+pandas_ta
+datetime
+yfinance
+scikit-learn
+PyPortfolioOpt
+curl_cffi
+sklearn
+empyrical
