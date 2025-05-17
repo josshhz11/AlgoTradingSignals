@@ -40,6 +40,7 @@ We curated the following technical indicators for each stock as below, explainin
 - Garman-Klass volatility uses **open, high, low, and closing prices** to provide a more accurate estimate of a stock's volatility than typical methods that only consider closing prices. It captures **intraday price movements** and is often used to **assess the risk associated with a stock**, especially in relation to its potential for rapid price changes.
 
 It is calculated as follows:
+
 ![Garman-Klass-Volatility-Equation](img/Garman-Klass-Volatility-Equation.png)
 
 **RSI**
