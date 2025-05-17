@@ -20,13 +20,12 @@ The technical indicators curated as features for quantitative analysis are as fo
   - CMA (Conservative Minus Aggressive): Investment premium (low vs high asset growth)
 
 We then used these features to backtest trading signals including but not limited to:
-1. RSI-Momentum Trading Signal
+1. Long-only RSI-Momentum Trading Signal
 2. Cross-Sectional Multi-Factor Composite Rank
 3. Rolling-IC-Weighted Composite Signal
 
-This model not only predicts the value of an option, but also incorporates the additional profit & loss (P&L) functionality to determine P&L of these options given their purchase price.
-
-This project was built using Python, Plotly, Streamlit, and CSS, and can be found [here](https://black-scholes-options-pricing-model.streamlit.app/).
+Further Improvements & Additional Explorations:
+- Building a LSTM ML Model for Stock Price Prediction
 
 ## 2. Methodology
 
@@ -66,7 +65,37 @@ We extracted the **top 100 most liquid companies by 5y rolling average dollar_vo
 ## 2.4. Calculation of Monthly Returns for Different Time Horizons
 To capture time series dynamics that reflect, for example, momentum patterns, we compute historical returns using the method .pct_change(lag), that is, returns over monthly periods as identified by lags (num of periods/months back). We computed monthly returns for 1, 2, 3, 6, 9, 12 month periods.
 
-##
+## 2.5. Exploration of additional features (Fama-French Indicators) and Calculation of Rolling Factor Betas
+We introduced Fama-French data to estimate the exposure of assets to common risk factors using linear regression. The 5 Fama-French factors (market risk, size, value, operating profitability, and investment) have been shown empirically to explain asset returns and are **commonly used to assess the risk/return profile of portfolios**. 
+By regressing our portfolio returns on these five-factor returns, we can see how much of our risk/returns come from i.e. 'tilted small-cap' or 'high-profitability' exposures as compared to true alpha (unexplained residual).
+
+Hence, we included these past factor exposures as financial features in models.
+
+Furthermore, we accessed the historical factor returns using the pandas-datareader and estimate historical exposures using the RollingOLS rolling linear regression.
+
+## 2.6. Backtesting algorithmic trading strategies
+
+#### 2.6.1. Long-only RSI-Momentum Trading Signal
+We first explored a simple backtest of RSI on *fwd1m* returns, by taking the top 20% of stocks with highest RSI each month to construct our portfolio, simulating the returns for the next month using *fwd1m* returns, rebalancing the portfolio each time.
+
+With this strategy, we were able to achieve in the 5-year period:
+- Cumulative returns of **184%** vs 118% for holding SPY throughout
+- CAGR of **24.6%** vs  17.9% for holding SPY throughout
+- Sharpe Ratio of **1.21** vs 1.00 for holding SPY throughout
+- Max Drawdown of **-0.12** vs -0.24 for holding SPY throughout
+
+Here is the comparative returns of backtesting this strategy against holding SPY throughout:
+![image]()
+
+#### 2.6.2. Cross-Sectional Multi-Factor Composite Rank
+TODO
+We first explored a simple backtest of RSI on *fwd1m* returns, by taking the top 20% of stocks with highest RSI each month to construct our portfolio, simulating the returns for the next month using *fwd1m* returns, rebalancing the portfolio each time.
+
+With this strategy, we were able to achieve in the 5-year period:
+- Cumulative returns of **184%** vs 118% for holding SPY throughout
+- CAGR of **24.6%** vs  17.9% for holding SPY throughout
+- Sharpe Ratio of **1.21** vs 1.00 for holding SPY throughout
+- Max Drawdown of **-0.12** vs -0.24 for holding SPY throughout
 
 ## Underlying Assumptions for the Model
 
