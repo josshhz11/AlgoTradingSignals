@@ -1,4 +1,4 @@
-# Portfolio Construction using Backtested AlgoTradingSignals (INCOMPLETE)
+# Portfolio Construction using Backtested Trading Signals (INCOMPLETE)
 
 ![image](https://www.ironfx.com/wp-content/uploads/2023/01/forex-algorithm-trade.jpg)
 
