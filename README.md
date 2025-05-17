@@ -42,8 +42,11 @@ We curated the following technical indicators for each stock as below, explainin
 It is calculated as follows:
 $$
 \text{Garman--Klass Volatility}
-= \frac{\bigl(\ln(\mathrm{High}) - \ln(\mathrm{Low})\bigr)^2}{2}
-\;-\;\bigl(2\ln(2)-1\bigr)\,\bigl(\ln(\mathrm{Adj\ Close}) - \ln(\mathrm{Open})\bigr)^2
+=
+\frac{\bigl(\ln(\text{High}) - \ln(\text{Low})\bigr)^{2}}{2}
+\;-\;
+\bigl(2\ln 2 - 1\bigr)\,
+\bigl(\ln(\text{Adj\_Close}) - \ln(\text{Open})\bigr)^{2}
 $$
 
 **RSI**
@@ -107,3 +110,11 @@ Here is the comparative returns of backtesting this strategy against holding SPY
 ![LO RSI Momentum Chart](img/Rolling-IC-Weighted-Composite-Signal-Chart.jpg)
 
 ## 3. Conclusion
+A simple LO-RSI-Momentum performed the best among our 3 strategy backtests, with the Rolling-IC-Weighted Composite Signal producing the same exact portfolios as the RSI strategy. This was because RSI's 24-month IC with next month returns dwarfed the other factors' ICs, and hence the composite resulted in ~100% RSI, just like the former strategy. To fix this, we would need to further floor or cap weights or use equal weights with rank-sum like we had done, in order to diversify.
+
+Overall, I believe that some further improvements that can be made are:
+1. Refining a LO strategy into a L/S, by longing the top 20% and shorting the bottom 20%, which will likely boost Sharpe and result in lower drawdown, albeit at the cost of higher turnover.
+2. Adding sector-neutral constraints to prevent unintended sector bets
+3. Account for trading costs (commissions, slippage)
+
+## 4. Nezt steps: 
