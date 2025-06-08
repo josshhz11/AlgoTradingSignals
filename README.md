@@ -11,7 +11,7 @@ The technical indicators curated as features for quantitative analysis are as fo
 - Bollinger Bands
 - ATR
 - MACD
-- Fama-French Factors
+- Fama-French 5 Factors
   - Mkt-RF: Market excess return
   - SMB (Small Minus Big): Size premium (small vs large caps)
   - HML (High Minus Low): Value premium (high vs low book-to-market)
@@ -84,7 +84,7 @@ Here is the comparative returns of backtesting this strategy against holding SPY
 ![LO RSI Momentum Chart](img/LO-RSI-Momentum%20Trading%20Signal-Chart.jpg)
 
 #### 2.6.2. Cross-Sectional Multi-Factor Composite Rank
-Next, I explored another trading signal which incorporated all of the features available, using a Cross-Sectional Multi-Factor Composite Signal computed by Rank-Sum of the features. 
+Next, I explored another trading signal which incorporated all of the features available, by z-scoring each indicator for each stock for each date, and summing them up to create a composite indicator of the z-scores. I then rebalanced the portfolio each month with the top 20% of this ranked composite signal.
 
 With this strategy, I was able to achieve in the 5-year period:
 - Cumulative returns of **84%** vs 119% for holding SPY throughout
@@ -97,6 +97,14 @@ Here is the comparative returns of backtesting this strategy against holding SPY
 
 #### 2.6.3. Rolling-IC-Weighted Composite Signal
 Lastly, I tested a signal that computes every technical/fundamental factor's **24-month information coefficient (IC) with next-month returns**, scaling today's cross-sectional z-scores by those ICs, summing the results into an adaptive composite score, and trading the stocks with the top 20% of scores.
+
+To break it down, here's what I did:
+- For each date, for every technical indicator I have (RSI, MACD,..., Mkt-RF, CMA, RMW), I compute the Information Coefficient (IC) of each stock, which is the Pearson correlation of today’s factor values with next month’s returns
+- I then calculate the rolling 24-month average IC for each stock at each period for a more robust indicator (rather than simply one-off monthly IC which can be noisy)
+- Just like the previous signal, I calculate the cross-sectional z-scores for each factor (normalizing them), based on their cross-sectional mean and SD for the month
+- Instead of summing the 24-month-ICs or the factor z-scores, I multiply them together for each period, to get a single composite score for each stock for every period.
+- I thus rank all stocks by this composite and select the top 20% to form our portfolio
+
 
 With this strategy, I obtained the same exact portfolios constructed by the LO-RSI-Momentum strategy above, **achieving the exact same cumulative returns, CAGR, and Sharpe over the 5-year period**.
 
