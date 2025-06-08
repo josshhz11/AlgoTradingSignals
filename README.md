@@ -1,4 +1,4 @@
-# Quantitative Portfolio Construction using Backtested Trading Signals
+![image](https://github.com/user-attachments/assets/950c6b50-95d1-4310-a4ec-ea52a506de22)# Quantitative Portfolio Construction using Backtested Trading Signals
 
 ![Algorithm Trading](https://media.licdn.com/dms/image/v2/C4E12AQE_IuRbyuRDNA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1520237131460?e=1752710400&v=beta&t=_Kjps9mYIKHvw6WJQcfOxVJtyLVhGoxmkJpWdXRgj4I)
 ## 1. Purpose of Project
@@ -103,6 +103,7 @@ To break it down, here's what I did:
 - I then calculate the rolling 24-month average IC for each stock at each period for a more robust indicator (rather than simply one-off monthly IC which can be noisy)
 - Just like the previous signal, I calculate the cross-sectional z-scores for each factor (normalizing them), based on their cross-sectional mean and SD for the month
 - Instead of summing the 24-month-ICs or the factor z-scores, I multiply them together for each period, to get a single composite score for each stock for every period.
+
 - I thus rank all stocks by this composite and select the top 20% to form our portfolio
 
 
